@@ -1,4 +1,10 @@
 {
+    "botman/botman": {
+        "version": "2.4.1"
+    },
+    "botman/driver-web": {
+        "version": "1.5.1"
+    },
     "cocur/slugify": {
         "version": "v3.1"
     },
@@ -80,6 +86,9 @@
     "egulias/email-validator": {
         "version": "2.1.6"
     },
+    "evenement/evenement": {
+        "version": "v3.0.1"
+    },
     "facebook/webdriver": {
         "version": "1.6.0"
     },
@@ -98,11 +107,17 @@
     "monolog/monolog": {
         "version": "1.23.0"
     },
+    "mpociot/pipeline": {
+        "version": "1.0.2"
+    },
     "nikic/php-parser": {
         "version": "v4.1.0"
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "opis/closure": {
+        "version": "3.1.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -127,6 +142,27 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "react/cache": {
+        "version": "v0.5.0"
+    },
+    "react/dns": {
+        "version": "v0.4.15"
+    },
+    "react/event-loop": {
+        "version": "v1.0.0"
+    },
+    "react/promise": {
+        "version": "v2.7.0"
+    },
+    "react/promise-timer": {
+        "version": "v1.5.0"
+    },
+    "react/socket": {
+        "version": "v0.8.12"
+    },
+    "react/stream": {
+        "version": "v1.0.0"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -169,6 +205,9 @@
     },
     "sonata-project/exporter": {
         "version": "1.9.1"
+    },
+    "spatie/macroable": {
+        "version": "1.0.0"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.3"
@@ -433,6 +472,9 @@
     },
     "symfony/yaml": {
         "version": "v4.1.6"
+    },
+    "tightenco/collect": {
+        "version": "v5.7.12"
     },
     "twig/extensions": {
         "version": "1.0",
