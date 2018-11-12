@@ -1,4 +1,13 @@
 {
+    "botman/botman": {
+        "version": "2.4.1"
+    },
+    "botman/driver-web": {
+        "version": "1.5.1"
+    },
+    "cocur/slugify": {
+        "version": "v3.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -77,6 +86,9 @@
     "egulias/email-validator": {
         "version": "2.1.6"
     },
+    "evenement/evenement": {
+        "version": "v3.0.1"
+    },
     "facebook/webdriver": {
         "version": "1.6.0"
     },
@@ -86,14 +98,26 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "knplabs/knp-menu": {
+        "version": "2.3.0"
+    },
+    "knplabs/knp-menu-bundle": {
+        "version": "v2.2.1"
+    },
     "monolog/monolog": {
         "version": "1.23.0"
+    },
+    "mpociot/pipeline": {
+        "version": "1.0.2"
     },
     "nikic/php-parser": {
         "version": "v4.1.0"
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "opis/closure": {
+        "version": "3.1.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -119,6 +143,27 @@
     "psr/simple-cache": {
         "version": "1.0.1"
     },
+    "react/cache": {
+        "version": "v0.5.0"
+    },
+    "react/dns": {
+        "version": "v0.4.15"
+    },
+    "react/event-loop": {
+        "version": "v1.0.0"
+    },
+    "react/promise": {
+        "version": "v2.7.0"
+    },
+    "react/promise-timer": {
+        "version": "v1.5.0"
+    },
+    "react/socket": {
+        "version": "v0.8.12"
+    },
+    "react/stream": {
+        "version": "v1.0.0"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -127,6 +172,42 @@
             "version": "5.2",
             "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
         }
+    },
+    "sonata-project/admin-bundle": {
+        "version": "3.31",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.31",
+            "ref": "0e5931df1732e3dccfba42a20853049e5e9db6ae"
+        }
+    },
+    "sonata-project/block-bundle": {
+        "version": "3.12.1"
+    },
+    "sonata-project/cache": {
+        "version": "2.0.1"
+    },
+    "sonata-project/core-bundle": {
+        "version": "3.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.9",
+            "ref": "2f69bd1995730b73a5211a9707622fb25a925df7"
+        }
+    },
+    "sonata-project/datagrid-bundle": {
+        "version": "2.4.0"
+    },
+    "sonata-project/doctrine-orm-admin-bundle": {
+        "version": "3.6.3"
+    },
+    "sonata-project/exporter": {
+        "version": "1.9.1"
+    },
+    "spatie/macroable": {
+        "version": "1.0.0"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.3"
@@ -299,6 +380,9 @@
     "symfony/security": {
         "version": "v4.1.6"
     },
+    "symfony/security-acl": {
+        "version": "v3.0.1"
+    },
     "symfony/security-bundle": {
         "version": "3.3",
         "recipe": {
@@ -325,6 +409,9 @@
             "version": "2.5",
             "ref": "3db029c03e452b4a23f7fc45cec7c922c2247eb8"
         }
+    },
+    "symfony/templating": {
+        "version": "v4.1.7"
     },
     "symfony/test-pack": {
         "version": "v1.0.4"
@@ -385,6 +472,18 @@
     },
     "symfony/yaml": {
         "version": "v4.1.6"
+    },
+    "tightenco/collect": {
+        "version": "v5.7.12"
+    },
+    "twig/extensions": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "ddb2e0a77773b7fd75d8d649545f174e664500ab"
+        }
     },
     "twig/twig": {
         "version": "v2.5.0"
