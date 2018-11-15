@@ -73,7 +73,7 @@ class Item
     }
 
     /**
-     * @param string $name
+     * @param string $species
      *
      * @return $this
      */
@@ -113,7 +113,7 @@ class Item
     }
 
     /**
-     * @param string $type
+     * @param string $sex
      *
      * @return $this
      */
