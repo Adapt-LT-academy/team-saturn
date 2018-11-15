@@ -21,14 +21,7 @@ class Item
      *
      * @ORM\Column(type="string", length=255)
      */
-    protected $name = '';
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=20)
-     */
-    protected $type = '';
+    protected $species = '';
 
     /**
      * @var string
@@ -36,6 +29,13 @@ class Item
      * @ORM\Column(type="string", length=20)
      */
     protected $size = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=20)
+     */
+    protected $sex = '';
 
     /**
      * @var int
@@ -67,9 +67,9 @@ class Item
     /**
      * @return string
      */
-    public function getName(): string
+    public function getSpecies(): string
     {
-        return $this->name;
+        return $this->species;
     }
 
     /**
@@ -77,29 +77,9 @@ class Item
      *
      * @return $this
      */
-    public function setName(string $name): self
+    public function setSpecies(string $species): self
     {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return $this
-     */
-    public function setType(string $type): self
-    {
-        $this->type = $type;
+        $this->species = $species;
 
         return $this;
     }
@@ -120,6 +100,26 @@ class Item
     public function setSize(string $size): self
     {
         $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSex(): string
+    {
+        return $this->sex;
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return $this
+     */
+    public function setSex(string $sex): self
+    {
+        $this->sex = $sex;
 
         return $this;
     }
