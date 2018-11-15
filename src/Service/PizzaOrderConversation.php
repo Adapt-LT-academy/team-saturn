@@ -14,7 +14,6 @@ class PizzaOrderConversation extends Conversation
         $this->ask(
             'Hello! What is your first name?',
             function (Answer $answer) {
-// Save result
                 $this->firstname = $answer->getText();
                 $this->say('Nice to meet you ' . $this->firstname);
             }
