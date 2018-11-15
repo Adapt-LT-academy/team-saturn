@@ -28,9 +28,9 @@ class TestItemFixtures extends Fixture{
 
     foreach ($testItems as $item) {
       $testItem = new TestItem();
-      $testItem->setName($item['name']);
-      $testItem->setType($item['type']);
-      $testItem->setSize($item['size']);
+      $testItem->setSpecies($item['name']);
+      $testItem->setSize($item['type']);
+      $testItem->setSex($item['size']);
       $testItem->setPrice($item['price']);
       $manager->persist($testItem);
     }
