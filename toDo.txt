@@ -1,0 +1,2 @@
+i testConversation sukurti papildoma koda, kad botman paklaustu ar vartotojas nori matyti gyvunu sarasa, jei varotojas paspaudzia 'taip', tada isvedamas DataFixtues.php baze
+
