@@ -1,3 +1,8 @@
+### macOS custom folder attributes
+.DS_Store
+
+### IntelliJ IDE
+.idea/
 
 ###> symfony/framework-bundle ###
 /.env
