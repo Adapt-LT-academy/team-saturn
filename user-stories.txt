@@ -1,0 +1,30 @@
+When I ( say hi | do nothing) then I am presented with a message:
+    Hello, this is a service where you can order a pet in a box for yourself or as a gift.
+    We have a catalog where you can find general information about the pets that we offer.
+    Would you like to browse our catalog?
+
+If I do not want to browse the catalog:
+    I expect to be offered and option for a random pet.
+    I expect to be asked how much money I am willing to spend on a pet.
+    I expect to be asked if it is a gift for a friend or for myself.
+
+If I choose to browse the catalog:
+    I expect to be presented with animal categories (mammals, birds, etc.).
+    I expect each category to be presented in picture format.
+    I expect to see information ( species name, size, price ) below each picture.
+    I expect to see arrows for navigation left and right through each animal category.
+    I expect to see button continue with by selection and then buttons for sex selection.
+
+After selecting an animal from the catalog:
+    I expect to be asked if it is a present for a friend.
+    I expect to be asked for shipping address.
+    When the address is input I expect to be asked if I want billing send to the same address.
+    If I choose no then I have to input another address.
+
+When address information is set:
+    I expect to be asked if i want to:
+        browse again
+        get a random pet
+        end my order
+When I choose to end order I expect to be presented with full order information
+I expect to see a greeting message after a successful order.
