@@ -35,3 +35,8 @@ services:
         tags:
         - { name: sonata.admin, manager_type: orm, label: Size }
         public: true
+
+    # to Fetch services via $container->get() we need to make them public 
+    App\Service\OptionsService:
+        class: App\Service\OptionsService
+        public: true
