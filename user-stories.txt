@@ -1,6 +1,7 @@
 NEW:
 
-1. As a customer I want to be presented with an option to browse pet catalog so that I could choose a pet for myself or as a present.
+1. As a customer I want to be presented with an option to browse pet catalog so that I could choose
+a pet for myself or as a present.
     Acceptance criteria:
         - When I choose to browse the catalog I expect to see it with pictures of pets.
         - When I click on a pet picture I expect to see information about the pet.
@@ -9,21 +10,27 @@ NEW:
 
 2. As an admin I want to see data through admin panel so that I could add/remove/edit existing data.
     Acceptance criteria:
-        -
+	- When I want to add/remove/edit first I am expected to choose a table from a dropdown menu. 
+        - If I press add, I expect to add item into table by filling fields by hand.
+	- If I press edit, I expect to see all pets in that specific table so I can select which row I want to edit.
+	- Remove option should be executed after confirming it, so this will help prevent miss-clicks.
 
-3. As a customer I want to see an informative message with buttons at the beginning of the conversation so that I could understand better what the service is about and know what I could do next.
+3. As a customer I want to see an informative message with buttons at the beginning of the conversation so that 
+I could understand better what the service is about and know what I could do next.
     Acceptance criteria:
-        - When I finish ordering a pet I expect to be presented with options again only without welcome message.
         - If I press to browse I expect to be presented with the catalog.
         - If I press the button for a random pet I expect to be asked to choose a price range
-        - If after reading the welcome message I don't want to order I expect to see a button to end order and leave some feedback.
+        - If after reading the welcome message I don't want to order I expect to see a button to end 
+	  order and leave some feedback.
 
-4. As a potential customer at first I would like to choose a kind of a pet. After selecting the kind, I am aspected to get common features following with possible pet choice.
+4. As a customer when I finish picking an item, I expect to get further option so I can decide what to do next.
     Acceptance criteria:
-	- Selective picture slider with pet kind.
-	- Common features of selected kind.
-	- Selective picture slider with pet choice.
+	- When first item is successfully selected: continue shopping and finish order options must follow next.
+	- When item list is approved then contact infos and delivery address follows. 
+	- When order is placed, I have to get verifying message on email.  
+	
 
+===============================================================================================================================
 OLD:
 
 When I ( say hi | do nothing) then I am presented with a message:
