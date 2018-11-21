@@ -1,34 +1,43 @@
 NEW:
 
-1. As a customer I want to be presented with an option to browse pet catalog so that I could choose
-a pet for myself or as a present.
+1. As a customer I want to be presented with an option to browse pet catalog so that I could choose a pet for myself or as a present.
     Acceptance criteria:
-        - When I choose to browse the catalog I expect to see it with pictures of pets.
-        - When I click on a pet picture I expect to see information about the pet.
-        - When I click on a pet picture I expect to see buttons to go back to catalog or continue with order.
-        - If I cannot find a suitable pet I expect to see a button to stop browsing the catalog.
+    - When I choose to browse the catalog I expect to see it with pictures of pets.
+    - When I click on a pet picture I expect to see information about the pet.
+    - When I click on a pet picture I expect to see buttons to go back to catalog or continue with order.
+    - If I click to add pet to the order I expect to be asked whether it is a
+    present so that I could tell if it is for me or a friend.
+    - If I cannot find a suitable pet I expect to see a button to stop browsing the catalog.
+    - If I click the button to stop browsing I expect to see a message and a
+    field for feedback.
 
 2. As an admin I want to see data through admin panel so that I could add/remove/edit existing data.
     Acceptance criteria:
-	- When I want to add/remove/edit first I am expected to choose a table from a dropdown menu. 
-        - If I press add, I expect to add item into table by filling fields by hand.
+	- When I want to add/remove/edit first I am expected to choose a table from
+	a drop-down menu.
+    - If I press add, I expect to add item into table by filling fields by hand.
 	- If I press edit, I expect to see all pets in that specific table so I can select which row I want to edit.
-	- Remove option should be executed after confirming it, so this will help prevent miss-clicks.
+	- If I press remove, I expect to see a confirmation dialog so this will help
+	 prevent accidental removals.
 
-3. As a customer I want to see an informative message with buttons at the beginning of the conversation so that 
-I could understand better what the service is about and know what I could do next.
+3. As a customer I want to see an informative message with buttons at the beginning of the conversation so that I could understand better what the service is about and know what I could do next.
     Acceptance criteria:
-        - If I press to browse I expect to be presented with the catalog.
-        - If I press the button for a random pet I expect to be asked to choose a price range
-        - If after reading the welcome message I don't want to order I expect to see a button to end 
-	  order and leave some feedback.
+    - If I press to browse I expect to be presented with the catalog.
+    - If I press the button for a random pet I expect to be asked to choose a price range
+    - If after reading the welcome message I don't want to order I expect to see a button to end order and leave some feedback.
 
-4. As a customer when I finish picking an item, I expect to get further option so I can decide what to do next.
+4. As a customer when I finish picking an item, I expect to get further options
+so that I could decide what to do next.
     Acceptance criteria:
-	- When first item is successfully selected: continue shopping and finish order options must follow next.
-	- When item list is approved then contact infos and delivery address follows. 
-	- When order is placed, I have to get verifying message on email.  
-	
+	- When I add an item to my order I expect to see an option to add
+	more or finish order.
+	- If I choose to add more I expect to see the catalog so that I could choose
+	 another pet.
+	- If I click to finish my order I expect to be asked for delivery address.
+	- After entering delivery address I expect to be asked if I want to use same
+	 address for billing so that I would not need to type that info again.
+	- If I click to finalize my order I expect to see a confirmation message
+	with full order information in text format without pictures.
 
 ===============================================================================================================================
 OLD:
