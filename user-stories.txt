@@ -1,3 +1,25 @@
+NEW:
+
+As a customer I want to be presented with an option to browse pet catalog so that I could choose a pet for myself or as a present.
+    Acceptance criteria:
+        - When I choose to browse the catalog I expect to see it with pictures of pets.
+        - When I click on a pet picture I expect to see information about the pet.
+        - When I click on a pet picture I expect to see buttons to go back to catalog or continue with order.
+        - If I cannot find a suitable pet I expect to see a button to stop browsing the catalog.
+
+As an admin I want to see data through admin panel so that I could add/remove/edit existing data.
+    Acceptance criteria:
+        -
+
+As a customer I want to see an informative message with buttons at the beginning of the conversation so that I could understand better what the service is about and know what I could do next.
+    Acceptance criteria:
+        - When I finish ordering a pet I expect to be presented with options again only without welcome message.
+        - If I press to browse I expect to be presented with the catalog.
+        - If I press the button for a random pet I expect to be asked to choose a price range
+        - If after reading the welcome message I don't want to order I expect to see a button to end order and leave some feedback.
+
+OLD:
+
 When I ( say hi | do nothing) then I am presented with a message:
     Hello, this is a service where you can order a pet in a box for yourself or as a gift.
     We have a catalog where you can find general information about the pets that we offer.
@@ -28,3 +50,13 @@ When address information is set:
         end my order
 When I choose to end order I expect to be presented with full order information
 I expect to see a greeting message after a successful order.
+
+TIPS ON WRITING USER STORIES:
+
+As a <user role/customer>
+I want to <goal to be accomplished>
+so that I can <reason of the goal>.
+
+“Given some precondition when I do some action then I expect the result”.
+
+Hence, the User story defines the requirement for any functionality or feature while the Acceptance Criteria defines the ‘Definition of done’ for the user story or the requirement.
