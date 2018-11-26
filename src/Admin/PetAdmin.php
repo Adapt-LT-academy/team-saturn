@@ -13,7 +13,6 @@ class PetAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('id', NumberType::class);
         $formMapper->add('species', TextType::class);
         $formMapper->add('size', TextType::class);
         $formMapper->add('sex', TextType::class);
@@ -23,11 +22,21 @@ class PetAdmin extends AbstractAdmin
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
+        $datagridMapper->add('id');
         $datagridMapper->add('species');
+        $datagridMapper->add('size');
+        $datagridMapper->add('sex');
+        $datagridMapper->add('image');
+        $datagridMapper->add('price');
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
+        $listMapper->addIdentifier('id');
         $listMapper->addIdentifier('species');
+        $listMapper->addIdentifier('size');
+        $listMapper->addIdentifier('sex');
+        $listMapper->addIdentifier('image');
+        $listMapper->addIdentifier('price');
     }
 }
