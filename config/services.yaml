@@ -29,12 +29,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    admin.size:
-        class: App\Admin\SizeAdmin
-        arguments: [~, App\Entity\Size, ~]
-        tags:
-        - { name: sonata.admin, manager_type: orm, label: Size }
-        public: true
+#    admin.size:
+#        class: App\Admin\SizeAdmin
+#        arguments: [~, App\Entity\Size, ~]
+#        tags:
+#        - { name: sonata.admin, manager_type: orm, label: Size }
+#        public: true
 
     admin.pet:
         class: App\Admin\PetAdmin
