@@ -20,7 +20,8 @@ NEW:
 	- If I press remove, I expect to see a confirmation dialog so this will help
 	 prevent accidental removals.
 
-3. As a customer I want to see an informative message with buttons at the beginning of the conversation so that I could understand better what the service is about and know what I could do next.
+3. As a customer I want to see an informative message with buttons at the beginning of the conversation so that I could understand
+ better what the service is about and know what I could do next.
     Acceptance criteria:
     - If I press to browse I expect to be presented with the catalog.
     - If I press the button for a random pet I expect to be asked to choose a price range
@@ -38,6 +39,10 @@ so that I could decide what to do next.
 	 address for billing so that I would not need to type that info again.
 	- If I click to finalize my order I expect to see a confirmation message
 	with full order information in text format without pictures.
+
+Botman chat flow script:
+
+
 
 ===============================================================================================================================
 OLD:

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Service\TestConversation;
+use App\Service\WelcomeConversation;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Cache\SymfonyCache;
@@ -42,22 +42,32 @@ class IndexController extends Controller
         //Setup DialogFlow middleware
         $dialogflow = ApiAi::create('s0meRand0mT0ken')->listenForAction();
         $botman->middleware->received($dialogflow);
+        //Welcome words.
+
+
         // Give the bot some things to listen for.
-        $botman->hears(
-            '(hello|hi|hey)',
-            function (BotMan $bot) {
-                $bot->startConversation(new TestConversation);
-            }
+//        $botman->hears(
+//            '(hello|hi|hey)',
+//            function (BotMan $bot) {
+//                $bot->startConversation(new WelcomeConversation);
+//            }
+//        );
+        $botman->hears('hi|hello|hey', function (BotMan $bot){
+            $bot->reply("Welcome to PetInBox. I am here to help you to find best fit!");
+        }
         );
         $botman->userStorage();
+
         $botman->hears(
             'stop',
             function (BotMan $bot) {
                 $bot->reply('stopped');
             }
         )->stopsConversation();
+
         // Start listening
         $botman->listen();
+
         //Send an empty response (Botman has already sent the output itself - https://github.com/botman/botman/issues/342)
         return new Response();
     }
