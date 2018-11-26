@@ -1,3 +1,5 @@
+###> IntelliJ IDE
+.idea/
 
 ###> symfony/framework-bundle ###
 /.env
