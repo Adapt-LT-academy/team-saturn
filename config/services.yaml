@@ -35,3 +35,10 @@ services:
         tags:
         - { name: sonata.admin, manager_type: orm, label: Size }
         public: true
+
+    admin.pet:
+        class: App\Admin\PetAdmin
+        arguments: [~, App\Entity\Pet, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, label: Pet }
+        public: true
