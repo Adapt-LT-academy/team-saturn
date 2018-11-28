@@ -42,3 +42,10 @@ services:
         tags:
         - { name: sonata.admin, manager_type: orm, label: Pet }
         public: true
+
+    admin.mammal:
+        class: App\Admin\MammalAdmin
+        arguments: [~, App\Entity\Mammal, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, label: Mammal }
+        public: true
