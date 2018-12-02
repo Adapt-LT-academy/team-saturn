@@ -53,10 +53,7 @@ class IndexController extends Controller
                 $bot->startConversation(new WelcomeConversation);
             }
         );
-//        $botman->hears('hi|hello|hey', function (BotMan $bot){
-//            $bot->reply("Welcome to PetInBox. I am here to help you to find best fit!");
-//        }
-//        );
+
         $botman->userStorage();
 
         $botman->hears(
