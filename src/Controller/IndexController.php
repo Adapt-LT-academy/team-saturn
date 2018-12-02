@@ -46,16 +46,17 @@ class IndexController extends Controller
 
 
         // Give the bot some things to listen for.
-//        $botman->hears(
-//            '(hello|hi|hey)',
-//            function (BotMan $bot) {
-//                $bot->startConversation(new WelcomeConversation);
-//            }
-//        );
-        $botman->hears('hi|hello|hey', function (BotMan $bot){
-            $bot->reply("Welcome to PetInBox. I am here to help you to find best fit!");
-        }
+        $botman->hears(
+            '(hello|hi|hey)',
+            function (BotMan $bot) {
+                $bot->reply('Welcome to PetInABox. I am here to ensure all service process will go smoothly.');
+                $bot->startConversation(new WelcomeConversation);
+            }
         );
+//        $botman->hears('hi|hello|hey', function (BotMan $bot){
+//            $bot->reply("Welcome to PetInBox. I am here to help you to find best fit!");
+//        }
+//        );
         $botman->userStorage();
 
         $botman->hears(

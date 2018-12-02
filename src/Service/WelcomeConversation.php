@@ -23,39 +23,7 @@ class WelcomeConversation extends Conversation {
 
     public function run() {
 
-        $this->ask (
-            'What is your first name?',
-            function (Answer $answer) {
-                $this->firstName = $answer->getText();
-                $this->say('Nice to meet you ' . $this->firstName);
-                $this->nextDialog();
-            }
-        );
     }
 
-    public function nextDialog()
-    {
-
-//        $testItems = $this->getContainer()->get(OptionsService::class)->getTestItems();
-//
-//        $buttons = [];
-//
-//        foreach ($testItems as $item)
-//        {
-//            $buttons[] = Button::create($item->getSpecies())->value($item->getId());
-//        }
-//
-//        $question = Question::create('What animal do you want?');
-//        $question->addButtons(
-//            $buttons
-//        );
-//        $this->ask(
-//            $question,
-//            function ($answer) {
-//                $this->testItem = $answer->getText();
-//                $this->askAddress();
-//            }
-//        );
-    }
 
 }
