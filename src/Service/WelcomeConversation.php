@@ -13,14 +13,12 @@ use App\Traits\ContainerAwareConversationTrait;
 
 /**
  * Class TestConversation
+ * @property  startConversation
  */
 class WelcomeConversation extends Conversation {
     
     use ContainerAwareConversationTrait;
 
-    protected $firstName;
-    protected $testItem;
-    protected $address;
 
     public function run() {
      //   $this->ask('Select one of above');
@@ -35,10 +33,33 @@ class WelcomeConversation extends Conversation {
               // Detect if button was clicked:
               if ($answer->isInteractiveMessageReply()) {
                   $selectedValue = $answer->getValue(); // will be either 'startBrowse', 'startRandom' or 'startQuit'
-                  $selectedText = $answer->getText(); // etc..
+//                $selectedText = $answer->getText(); // etc..
               }
 
-          });  
+              switch ($answer){
+                  case 'startBrowse':
+                      //$this->startConversation(new Browse);
+                      $this->runBrowse();
+                      break;
+
+                  case 'startRandom':
+                      $this->runBrowse();
+                      break;
+
+                  case 'startQuit':
+                      $this->runBrowse();
+                      break;
+              }
+              // printout selected
+ //             $this->say("You pressed $selectedValue");
+
+          });
+    }
+
+
+    public function runBrowse() {
+        $this->say('runBrowse executed');
+     //   $this->startConversation (new Browse());
     }
 
 

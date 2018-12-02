@@ -14,13 +14,13 @@ use App\Traits\ContainerAwareConversationTrait;
 /**
  * Class TestConversation
  */
-class Browse extends Conversation {
+class Browse extends WelcomeConversation {
     
     use ContainerAwareConversationTrait;
 
 
     public function run() {
-        $this->say("Browse executed..");
+        $this->say("Browse class executed..");
     }
 
 
