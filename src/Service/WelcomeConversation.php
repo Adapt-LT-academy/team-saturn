@@ -71,6 +71,7 @@ class WelcomeConversation extends Conversation
             ->addButtons([
                 Button::create('Dog')->value('dog'),
                 Button::create('Cat')->value('cat'),
+                Button::create('Quit')->value('startQuit'),
             ]);
 
         $this->ask($question, function (Answer $answer) {
@@ -79,11 +80,14 @@ class WelcomeConversation extends Conversation
             }
 
             if ($answer == 'dog') {
-                $this->species = $answer;
                 $this->selectDogKind();
-            } else {
+            //    return $this->species = $answer;
+            } else if ($answer == 'cat') {
                 $this->species = $answer;
                 $this->selectCatKind();
+            //    return $this->species = $answer;
+            } else {
+                $this->runQuit();
             }
         });
     }
@@ -100,11 +104,118 @@ class WelcomeConversation extends Conversation
 
     public function selectDogKind()
     {
-        $this->say('selectDogKind executed..');
+        $question = Question::create('Please select dog kind')
+            ->addButtons([
+                Button::create('Bulldog')->value('bulldog'),
+                Button::create('Beagle')->value('begle'),
+                Button::create('Poodle')->value('poodle'),
+                Button::create('Chihuahua')->value('chihuahua'),
+                Button::create('Dobermann')->value('dobermann'),
+                Button::create('Quit')->value('startQuit'),
+            ]);
+
+        $this->ask($question, function (Answer $answer) {
+            if ($answer->isInteractiveMessageReply()) {
+                $answer->getValue();
+            }
+
+            switch ($answer) {
+                case 'bulldog':
+                    $this->kind = $answer;
+                    $this->additionalInfo();
+                    break;
+                case 'begle':
+                    $this->kind = $answer;
+                    $this->additionalInfo();
+                    break;
+                case 'poodle':
+                    $this->kind = $answer;
+                    $this->additionalInfo();
+                    break;
+                case 'chihuahua':
+                    $this->kind = $answer;
+                    $this->additionalInfo();
+                    break;
+                case 'dobermann':
+                    $this->kind = $answer;
+                    $this->additionalInfo();
+                    break;
+                case 'startQuit':
+                    $this->runQuit();
+                    break;
+            }
+        });
     }
 
     public function selectCatKind()
     {
-        $this->say('selectCatKind executed..');
+        $question = Question::create('Please select cat kind')
+            ->addButtons([
+                Button::create('Ragdoll')->value('ragdoll'),
+                Button::create('Sphynx')->value('sphynx'),
+                Button::create('Bengal')->value('bengal'),
+                Button::create('Siberian')->value('siberian'),
+                Button::create('Chartreux')->value('chartreux'),
+                Button::create('Quit')->value('startQuit'),
+            ]);
+
+        $this->ask($question, function (Answer $answer) {
+            if ($answer->isInteractiveMessageReply()) {
+                $answer->getValue();
+            }
+
+            switch ($answer) {
+                case 'ragdoll':
+                    $this->kind = $answer;
+                    $this->additionalInfo();
+                    break;
+                case 'sphynx':
+                    $this->kind = $answer;
+                    $this->additionalInfo();
+                    break;
+                case 'bengal':
+                    $this->kind = $answer;
+                    $this->additionalInfo();
+                    break;
+                case 'siberian':
+                    $this->kind = $answer;
+                    $this->additionalInfo();
+                    break;
+                case 'chartreux':
+                    $this->kind = $answer;
+                    $this->additionalInfo();
+                    break;
+                case 'startQuit':
+                    $this->additionalInfo();
+                    break;
+            }
+        });
+    }
+
+    public function additionalInfo()
+    {
+        $question = Question::create('What pet would you prefer?')
+            ->addButtons([
+                Button::create('Dog')->value('dog'),
+                Button::create('Cat')->value('cat'),
+                Button::create('Quit')->value('startQuit'),
+            ]);
+
+        $this->ask($question, function (Answer $answer) {
+            if ($answer->isInteractiveMessageReply()) {
+                $answer->getValue();
+            }
+
+            if ($answer == 'dog') {
+                $this->selectDogKind();
+                //    return $this->species = $answer;
+            } else if ($answer == 'cat') {
+                $this->species = $answer;
+                $this->selectCatKind();
+                //    return $this->species = $answer;
+            } else {
+                $this->runQuit();
+            }
+        });
     }
 }
