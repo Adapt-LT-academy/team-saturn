@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Service\WelcomeConversation;
+use App\Service\PetOrder;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Cache\SymfonyCache;
@@ -50,7 +50,7 @@ class IndexController extends Controller
             '(hello|hi|hey)',
             function (BotMan $bot) {
                 $bot->reply('Welcome to PetInABox. I am here to ensure all service process will go smoothly.');
-                $bot->startConversation(new WelcomeConversation);
+                $bot->startConversation(new PetOrder);
             }
         );
 
