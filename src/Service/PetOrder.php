@@ -25,6 +25,7 @@ class PetOrder extends Conversation
     protected $name;
     protected $surname;
     protected $street;
+    protected $apartmentNumber;
     protected $city;
 
     public function run()
@@ -88,7 +89,7 @@ class PetOrder extends Conversation
 
     public function runRandom()
     {
-        $this->say(' ');
+        $this->say('Random executed');
     }
 
     /**
@@ -222,11 +223,10 @@ class PetOrder extends Conversation
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
                 $this->size = $answer->getValue();
-
+                $this->selectGender();
             }
 
         });
-        $this->selectGender();
     }
 
     public function selectGender()
@@ -258,7 +258,7 @@ class PetOrder extends Conversation
     public function askSurname()
     {
         $this->ask('Great, and your last name?', function (Answer $response) {
-           $this->name = $response->getText();
+           $this->surname = $response->getText();
            $this->askStreet();
         });
     }
@@ -266,15 +266,15 @@ class PetOrder extends Conversation
     public function askStreet()
     {
         $this->ask('Got it! Now we need a location. Let start with street name.', function (Answer $response) {
-            $this->name = $response->getText();
-            $this->askAppartmentNumber();
+            $this->street = $response->getText();
+            $this->askApartmentNumber();
         });
     }
 
-    public function askAppartmentNumber()
+    public function askApartmentNumber()
     {
         $this->ask('Now enter apartment number.', function (Answer $response) {
-            $this->name = $response->getText();
+            $this->apartmentNumber = $response->getText();
             $this->askCity();
         });
     }
@@ -282,12 +282,15 @@ class PetOrder extends Conversation
     public function askCity()
     {
         $this->ask('Oh and city?', function (Answer $response) {
-            $this->name = $response->getText();
+            $this->city = $response->getText();
             $this->customerDataValidation();
         });
     }
 
     public function customerDataValidation() {
         $this->say('Got it. Please check collected data before going further.');
+        $this->say('NAME: '.$this->name.' SURNAME: '.$this->surname.' STREET: '.$this->street.' APARTMENT: '
+        .$this->apartmentNumber.' CITY: '.$this->city);
     }
+    
 }
