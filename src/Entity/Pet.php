@@ -14,7 +14,6 @@ class Pet
     private $id;
     private $species;
     private $breed;
-    private $age;
     private $gender;
     private $price = 0;
 
@@ -59,21 +58,6 @@ class Pet
         $this->breed = $breed;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAge(): String
-    {
-        return $this->age;
-    }
-
-    /**
-     * @param mixed $age
-     */
-    public function setAge($age): self
-    {
-        $this->age = $age;
-    }
 
     /**
      * @return mixed
