@@ -29,35 +29,8 @@ class PetOrder extends Conversation
 
     public function run()
     {
-
         $this->runBrowse();
-//        $question = Question::create('Select one of above')
-//            ->addButtons([
-//                Button::create('Browse')->value('startBrowse'),
-//                Button::create('Random')->value('startRandom'),
-//                Button::create('Quit')->value('startQuit'),
-//            ]);
-//
-//        $this->ask($question, function (Answer $answer) {
-//            // Detect if button was clicked:
-//            if ($answer->isInteractiveMessageReply()) {
-//                $answer->getValue();
-//            }
-//
-//            switch ($answer) {
-//                case 'startBrowse':
-//                    $this->runBrowse();
-//                    break;
-//
-//                case 'startRandom':
-//                    $this->runRandom();
-//                    break;
-//
-//                case 'startQuit':
-//                    $this->runQuit();
-//                    break;
-//            }
-//        });
+
     }
 
     public function runBrowse()
@@ -128,7 +101,7 @@ class PetOrder extends Conversation
         $question = Question::create('Please select dog breed')
             ->addButtons([
                 Button::create('Bulldog')->value('bulldog'),
-                Button::create('Beagle')->value('begle'),
+                Button::create('Beagle')->value('beagle'),
                 Button::create('Poodle')->value('poodle'),
                 Button::create('Chihuahua')->value('chihuahua'),
                 Button::create('Dobermann')->value('dobermann'),
@@ -145,7 +118,7 @@ class PetOrder extends Conversation
                     $this->breed = $answer;
                     $this->selectGender();
                     break;
-                case 'begle':
+                case 'beagle':
                     $this->breed = $answer;
                     $this->selectGender();
                     break;
@@ -267,37 +240,51 @@ class PetOrder extends Conversation
     {
         $this->ask('Oh and city?', function (Answer $response) {
             $this->city = $response->getText();
-            $this->customerDataValidation();
+            $this->orderDetails();
         });
     }
 
     /**
      *
      */
-    public function customerDataValidation() {
-        $this->say('Got it. Please check collected data before going further.');
-        $this->say('Species: '.$this->species.' Breed: '.$this->breed.' Gender: '.$this->gender);
-        $this->say('Name: '.$this->name.' Surname: '.$this->surname.' Street: '.$this->street.' Apartment: '
-        .$this->apartmentNumber.' City: '.$this->city);
+    public function orderDetails() {
+        $message = '<br>PET DETAILS:<br>';
+        $message .= 'Species: '.$this->species.'<br>';
+        $message .= 'Breed: '.$this->breed.'<br>';
+        $message .= 'Gender: '.$this->gender.'<br>';
+        $message .= '<br>DELIVERY DETAILS:<br>';
+        $message .= 'Street: '.$this->street.'<br>';
+        $message .= 'Apartment: '.$this->apartmentNumber.'<br>';
+        $message .= 'City: '.$this->city.'<br>';
 
+        $this->say('Order details obtained successfully' . $message);
+        $this->orderDatValidation();
 
-        $question = Question::create('Confirm order details')
+    }
+
+    public function orderDatValidation() {
+                $question = Question::create('Confirm order details')
             ->addButtons([
                 Button::create('Confirm')->value('yes'),
-                Button::create('Decline')->value('no'),
+                Button::create('Edit pet and delivery details')->value('editPet'),
+                Button::create('Edit delivery details')->value('editAddress'),
             ]);
 
         $this->ask($question, function (Answer $answer) {
-            if ($answer->isInteractiveMessageReply() && value() == 'yes') {
-                $this->size = $answer->getValue();
-                // next step?
-            } else {
-                $this->runQuit();
+            if ($answer->isInteractiveMessageReply()) {
+                $answer->getValue();
             }
-
+            switch ($answer) {
+                case 'yes':
+                    $this->say('Order confirmed');
+                    break;
+                case 'editPet':
+                    $this->runBrowse();
+                    break;
+                case 'editAddress':
+                    $this->askName();
+            }
         });
-
-
     }
 
 }
