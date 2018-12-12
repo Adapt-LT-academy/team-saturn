@@ -36,6 +36,7 @@ class Pet
 
     /**
      * @param mixed $species
+     * @return Pet
      */
     public function setSpecies(String $species): self
     {
@@ -52,6 +53,7 @@ class Pet
 
     /**
      * @param mixed $breed
+     * @return Pet
      */
     public function setBreed($breed): self
     {
@@ -69,6 +71,7 @@ class Pet
 
     /**
      * @param mixed $gender
+     * @return Pet
      */
     public function setGender($gender): self
     {
@@ -85,6 +88,7 @@ class Pet
 
     /**
      * @param mixed $price
+     * @return Pet
      */
     public function setPrice(int $price): self
     {

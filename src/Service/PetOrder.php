@@ -19,8 +19,7 @@ class PetOrder extends Conversation
 
     protected $species;
     protected $breed;
-    protected $size;
-    protected $sex;
+    protected $gender;
     protected $price;
     protected $name;
     protected $surname;
@@ -30,33 +29,35 @@ class PetOrder extends Conversation
 
     public function run()
     {
-        $question = Question::create('Select one of above')
-            ->addButtons([
-                Button::create('Browse')->value('startBrowse'),
-                Button::create('Random')->value('startRandom'),
-                Button::create('Quit')->value('startQuit'),
-            ]);
 
-        $this->ask($question, function (Answer $answer) {
-            // Detect if button was clicked:
-            if ($answer->isInteractiveMessageReply()) {
-                $answer->getValue();
-            }
-
-            switch ($answer) {
-                case 'startBrowse':
-                    $this->runBrowse();
-                    break;
-
-                case 'startRandom':
-                    $this->runRandom();
-                    break;
-
-                case 'startQuit':
-                    $this->runQuit();
-                    break;
-            }
-        });
+        $this->runBrowse();
+//        $question = Question::create('Select one of above')
+//            ->addButtons([
+//                Button::create('Browse')->value('startBrowse'),
+//                Button::create('Random')->value('startRandom'),
+//                Button::create('Quit')->value('startQuit'),
+//            ]);
+//
+//        $this->ask($question, function (Answer $answer) {
+//            // Detect if button was clicked:
+//            if ($answer->isInteractiveMessageReply()) {
+//                $answer->getValue();
+//            }
+//
+//            switch ($answer) {
+//                case 'startBrowse':
+//                    $this->runBrowse();
+//                    break;
+//
+//                case 'startRandom':
+//                    $this->runRandom();
+//                    break;
+//
+//                case 'startQuit':
+//                    $this->runQuit();
+//                    break;
+//            }
+//        });
     }
 
     public function runBrowse()
@@ -66,7 +67,7 @@ class PetOrder extends Conversation
             ->addButtons([
                 Button::create('Dog')->value('dog'),
                 Button::create('Cat')->value('cat'),
-                Button::create('Quit')->value('startQuit'),
+          //      Button::create('Quit')->value('startQuit'),
             ]);
 
         $this->ask($question, function (Answer $answer) {
@@ -75,6 +76,7 @@ class PetOrder extends Conversation
             }
 
             if ($answer == 'dog') {
+                $this->species = $answer;
                 $this->selectDogBreed();
             //    return $this->species = $answer;
             } else if ($answer == 'cat') {
@@ -123,7 +125,7 @@ class PetOrder extends Conversation
 
     public function selectDogBreed()
     {
-        $question = Question::create('Please select dog kind')
+        $question = Question::create('Please select dog breed')
             ->addButtons([
                 Button::create('Bulldog')->value('bulldog'),
                 Button::create('Beagle')->value('begle'),
@@ -141,23 +143,23 @@ class PetOrder extends Conversation
             switch ($answer) {
                 case 'bulldog':
                     $this->breed = $answer;
-                    $this->selectAge();
+                    $this->selectGender();
                     break;
                 case 'begle':
                     $this->breed = $answer;
-                    $this->selectAge();
+                    $this->selectGender();
                     break;
                 case 'poodle':
                     $this->breed = $answer;
-                    $this->selectAge();
+                    $this->selectGender();
                     break;
                 case 'chihuahua':
                     $this->breed = $answer;
-                    $this->selectAge();
+                    $this->selectGender();
                     break;
                 case 'dobermann':
                     $this->breed = $answer;
-                    $this->selectAge();
+                    $this->selectGender();
                     break;
                 case 'startQuit':
                     $this->runQuit();
@@ -186,46 +188,28 @@ class PetOrder extends Conversation
             switch ($answer) {
                 case 'ragdoll':
                     $this->breed = $answer;
-                    $this->selectAge();
+                    $this->selectGender();
                     break;
                 case 'sphynx':
                     $this->breed = $answer;
-                    $this->selectAge();
+                    $this->selectGender();
                     break;
                 case 'bengal':
                     $this->breed = $answer;
-                    $this->selectAge();
+                    $this->selectGender();
                     break;
                 case 'siberian':
                     $this->breed = $answer;
-                    $this->selectAge();
+                    $this->selectGender();
                     break;
                 case 'chartreux':
                     $this->breed = $answer;
-                    $this->selectAge();
+                    $this->selectGender();
                     break;
                 case 'startQuit':
                     $this->runQuit();
                     break;
             }
-        });
-    }
-
-    public function selectAge()
-    {
-        $question = Question::create('Please select age range')
-            ->addButtons([
-                Button::create('Less than a year')->value('year'),
-                Button::create('One to five years')->value('5years'),
-                Button::create('More than five years')->value('5+years'),
-            ]);
-
-        $this->ask($question, function (Answer $answer) {
-            if ($answer->isInteractiveMessageReply()) {
-                $this->size = $answer->getValue();
-                $this->selectGender();
-            }
-
         });
     }
 
@@ -239,7 +223,7 @@ class PetOrder extends Conversation
 
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
-                $this->size = $answer->getValue();
+                $this->gender = $answer->getValue();
                 $this->askName();
             }
 
@@ -265,7 +249,7 @@ class PetOrder extends Conversation
 
     public function askStreet()
     {
-        $this->ask('Got it! Now we need a location. Let start with street name.', function (Answer $response) {
+        $this->ask('Got it! Now we need a location. Lets start with street name.', function (Answer $response) {
             $this->street = $response->getText();
             $this->askApartmentNumber();
         });
@@ -287,10 +271,33 @@ class PetOrder extends Conversation
         });
     }
 
+    /**
+     *
+     */
     public function customerDataValidation() {
         $this->say('Got it. Please check collected data before going further.');
-        $this->say('NAME: '.$this->name.' SURNAME: '.$this->surname.' STREET: '.$this->street.' APARTMENT: '
-        .$this->apartmentNumber.' CITY: '.$this->city);
+        $this->say('Species: '.$this->species.' Breed: '.$this->breed.' Gender: '.$this->gender);
+        $this->say('Name: '.$this->name.' Surname: '.$this->surname.' Street: '.$this->street.' Apartment: '
+        .$this->apartmentNumber.' City: '.$this->city);
+
+
+        $question = Question::create('Confirm order details')
+            ->addButtons([
+                Button::create('Confirm')->value('yes'),
+                Button::create('Decline')->value('no'),
+            ]);
+
+        $this->ask($question, function (Answer $answer) {
+            if ($answer->isInteractiveMessageReply() && value() == 'yes') {
+                $this->size = $answer->getValue();
+                // next step?
+            } else {
+                $this->runQuit();
+            }
+
+        });
+
+
     }
 
 }
