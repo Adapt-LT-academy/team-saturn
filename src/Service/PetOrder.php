@@ -18,7 +18,7 @@ class PetOrder extends Conversation
     use ContainerAwareConversationTrait;
 
     protected $species;
-    protected $kind;
+    protected $breed;
     protected $size;
     protected $sex;
     protected $price;
@@ -75,11 +75,11 @@ class PetOrder extends Conversation
             }
 
             if ($answer == 'dog') {
-                $this->selectDogKind();
+                $this->selectDogBreed();
             //    return $this->species = $answer;
             } else if ($answer == 'cat') {
                 $this->species = $answer;
-                $this->selectCatKind();
+                $this->selectCatBreed();
             //    return $this->species = $answer;
             } else {
                 $this->runQuit();
@@ -121,7 +121,7 @@ class PetOrder extends Conversation
 
     }
 
-    public function selectDogKind()
+    public function selectDogBreed()
     {
         $question = Question::create('Please select dog kind')
             ->addButtons([
@@ -140,24 +140,24 @@ class PetOrder extends Conversation
 
             switch ($answer) {
                 case 'bulldog':
-                    $this->kind = $answer;
-                    $this->selectSize();
+                    $this->breed = $answer;
+                    $this->selectAge();
                     break;
                 case 'begle':
-                    $this->kind = $answer;
-                    $this->selectSize();
+                    $this->breed = $answer;
+                    $this->selectAge();
                     break;
                 case 'poodle':
-                    $this->kind = $answer;
-                    $this->selectSize();
+                    $this->breed = $answer;
+                    $this->selectAge();
                     break;
                 case 'chihuahua':
-                    $this->kind = $answer;
-                    $this->selectSize();
+                    $this->breed = $answer;
+                    $this->selectAge();
                     break;
                 case 'dobermann':
-                    $this->kind = $answer;
-                    $this->selectSize();
+                    $this->breed = $answer;
+                    $this->selectAge();
                     break;
                 case 'startQuit':
                     $this->runQuit();
@@ -166,7 +166,7 @@ class PetOrder extends Conversation
         });
     }
 
-    public function selectCatKind()
+    public function selectCatBreed()
     {
         $question = Question::create('Please select cat kind')
             ->addButtons([
@@ -185,24 +185,24 @@ class PetOrder extends Conversation
 
             switch ($answer) {
                 case 'ragdoll':
-                    $this->kind = $answer;
-                    $this->selectSize();
+                    $this->breed = $answer;
+                    $this->selectAge();
                     break;
                 case 'sphynx':
-                    $this->kind = $answer;
-                    $this->selectSize();
+                    $this->breed = $answer;
+                    $this->selectAge();
                     break;
                 case 'bengal':
-                    $this->kind = $answer;
-                    $this->selectSize();
+                    $this->breed = $answer;
+                    $this->selectAge();
                     break;
                 case 'siberian':
-                    $this->kind = $answer;
-                    $this->selectSize();
+                    $this->breed = $answer;
+                    $this->selectAge();
                     break;
                 case 'chartreux':
-                    $this->kind = $answer;
-                    $this->selectSize();
+                    $this->breed = $answer;
+                    $this->selectAge();
                     break;
                 case 'startQuit':
                     $this->runQuit();
@@ -211,7 +211,7 @@ class PetOrder extends Conversation
         });
     }
 
-    public function selectSize()
+    public function selectAge()
     {
         $question = Question::create('Please select age range')
             ->addButtons([
@@ -292,5 +292,5 @@ class PetOrder extends Conversation
         $this->say('NAME: '.$this->name.' SURNAME: '.$this->surname.' STREET: '.$this->street.' APARTMENT: '
         .$this->apartmentNumber.' CITY: '.$this->city);
     }
-    
+
 }
