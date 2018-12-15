@@ -35,13 +35,14 @@ services:
 
       # config/services.yaml
 
-
   admin.animal:
     class: App\Admin\AnimalAdmin
     arguments: [~, App\Entity\Animal, ~]
     tags:
       - { name: sonata.admin, manager_type: orm, label: Animal }
     public: true
+
+
 
   # to Fetch services via $container->get() we need to make them public
   App\Service\OptionsService:

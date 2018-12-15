@@ -8,18 +8,18 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Pet;
+use App\Entity\Animal;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class PetFixtures extends Fixture
+class AnimalFixtures extends Fixture
 {
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        $pets = [
+        $animals = [
             [
                 'species' => 'dog',
                 'breed' => 'bulldog',
@@ -35,13 +35,13 @@ class PetFixtures extends Fixture
 
         ];
 
-        foreach ($pets as $item) {
-            $pets = new Pet();
-            $pets->setSpecies($item['species']);
-            $pets->setBreed($item['breed']);
-            $pets->setGender($item['gender']);
-            $pets->setPrice($item['price']);
-            $manager->persist($pets);
+        foreach ($animals as $item) {
+            $animals = new Pet();
+            $animals->setSpecies($item['species']);
+            $animals->setBreed($item['breed']);
+            $animals->setGender($item['gender']);
+            $animals->setPrice($item['price']);
+            $manager->persist($animals);
         }
         $manager->flush();
     }
