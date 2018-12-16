@@ -21,22 +21,22 @@ class AnimalFixtures extends Fixture
     {
         $animals = [
             [
-                'species' => 'dog',
-                'breed' => 'bulldog',
-                'gender' => 'male',
+                'species' => 'Cat',
+                'breed' => 'Bulldog',
+                'gender' => 'Male',
                 'price' => 500,
             ],
             [
-                'species' => 'cat',
-                'breed' => 'siberian',
-                'gender' => 'male',
+                'species' => 'Dog',
+                'breed' => 'Siberian',
+                'gender' => 'Male',
                 'price' => 500,
             ],
 
         ];
 
         foreach ($animals as $item) {
-            $animals = new Pet();
+            $animals = new Animal();
             $animals->setSpecies($item['species']);
             $animals->setBreed($item['breed']);
             $animals->setGender($item['gender']);

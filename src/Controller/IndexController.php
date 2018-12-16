@@ -1,8 +1,6 @@
 <?php
-
 namespace App\Controller;
-
-use App\Service\PetOrder;
+use App\Service\AnimalService;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Cache\SymfonyCache;
@@ -29,7 +27,6 @@ class IndexController extends Controller
     {
         return $this->render('botman.html.twig');
     }
-
     /**
      * @Route("/message", name="message")
      */
@@ -42,30 +39,24 @@ class IndexController extends Controller
         //Setup DialogFlow middleware
         $dialogflow = ApiAi::create('s0meRand0mT0ken')->listenForAction();
         $botman->middleware->received($dialogflow);
-        //Welcome words.
-
 
         // Give the bot some things to listen for.
         $botman->hears(
             '(hello|hi|hey)',
             function (BotMan $bot) {
-                $bot->reply('Welcome to PetInABox. I am here to ensure all service process will go smoothly.');
-                $bot->startConversation(new PetOrder);
+                $bot->startConversation(new PizzaOrderConversation);
             }
         );
 
         $botman->userStorage();
-
         $botman->hears(
             'stop',
             function (BotMan $bot) {
                 $bot->reply('stopped');
             }
         )->stopsConversation();
-
         // Start listening
         $botman->listen();
-
         //Send an empty response (Botman has already sent the output itself - https://github.com/botman/botman/issues/342)
         return new Response();
     }

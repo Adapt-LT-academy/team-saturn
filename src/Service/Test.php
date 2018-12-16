@@ -12,7 +12,7 @@ use App\Traits\ContainerAwareConversationTrait;
  * Class TestConversation
  * @property  startConversation
  */
-class PetOrder extends Conversation
+class Test extends Conversation
 {
 
     use ContainerAwareConversationTrait;
