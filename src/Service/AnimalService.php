@@ -90,7 +90,11 @@ class AnimalService extends Conversation
         $message .= 'Species: '.$this->species.'<br>';
         $message .= 'Breed: '.$this->breed.'<br>';
         $message .= 'Gender: '.$this->gender.'<br>';
-        $message .= 'Price: '.$this->price.'<br>';
+
+        $price = $this->getContainer()->get(DatabaseService::class)
+            ->getPrice($this->species, $this->breed, $this->gender);
+
+        $message .= 'Price: '.$price.'<br>';
         $this->say( $message);
         $this->runConfirmAnimal();
     }
