@@ -22,26 +22,33 @@ class AnimalService extends Conversation
     protected $gender;
     protected $price;
 
-    /**
-     * AnimalService constructor.
-     * @param $species
-     * @param $breed
-     * @param $gender
-     * @param $price
-     */
-    public function __construct($species, $breed, $gender, $price)
-    {
-        $this->species = $species;
-        $this->breed = $breed;
-        $this->gender = $gender;
-        $this->price = $price;
-    }
+//    /**
+//     * AnimalService constructor.
+//     * @param $animal
+//     * @param $species
+//     * @param $breed
+//     * @param $gender
+//     * @param $price
+//     */
+//    public function __construct(Animal $animal, string $species, string $breed,
+//                                string $gender, int $price)
+//    {
+//        $this->animal = $animal;
+//        $this->species = $species;
+//        $this->breed = $breed;
+//        $this->gender = $gender;
+//        $this->price = $price;
+//    }
 
 
     public function run()
     {
         $this->say('testDatabase executed');
-  //      $this->testDatabase();
+        $allDogs = $this->getContainer()->get(DatabaseService::class)
+            ->getAllDogs();
+//        $this->say($allDogs);
+
+//        $this->testDatabase();
 
 
 //        // $this->say('runBrowse executed');
@@ -69,15 +76,15 @@ class AnimalService extends Conversation
 //        });
     }
 
-    /**
-     *
-     */
-    public function usingRepository()
-    {
-        $message = 0;
-        $message = $this->getContainer()->get(DatabaseService::class)->getAnimal($this->breed,$this->species,$this->gender);
-        $this->say('message'.$message);
-    }
+//    /**
+//     *
+//     */
+//    public function usingRepository()
+//    {
+//        $message = 0;
+//        $message = $this->getContainer()->get(DatabaseService::class)->getAnimal($this->breed,$this->species,$this->gender);
+//        $this->say('message'.$message);
+//    }
 
 
     public function testDatabase()

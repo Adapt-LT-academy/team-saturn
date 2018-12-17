@@ -38,7 +38,7 @@ class DatabaseService
 
     public function getAllDogs()
     {
-        $query = $this->em->createQuery('SELECT u FROM App\Entity\Animal u WHERE u.id = 28');
+        $query = $this->em->createQuery('SELECT u FROM App\Entity\Animal');
         return $query->getResult();
     }
 }
