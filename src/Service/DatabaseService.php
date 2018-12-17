@@ -1,16 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: macbookair
- * Date: 2018-12-17
- * Time: 10:30
- */
 
 namespace App\Service;
 
-use App\Entity\Animal;
-use App\Entity\Client;
-use App\Entity\Orders;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DatabaseService
