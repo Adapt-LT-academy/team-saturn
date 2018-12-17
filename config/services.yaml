@@ -61,7 +61,7 @@ services:
 
   admin.order:
     class: App\Admin\OrdersAdmin
-    arguments: [~, App\Entity\Order, ~]
+    arguments: [~, App\Entity\Orders, ~]
     tags:
     - { name: sonata.admin, manager_type: orm, label: Orders }
     public: true
