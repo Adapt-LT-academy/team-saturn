@@ -22,70 +22,33 @@ class AnimalService extends Conversation
     protected $gender;
     protected $price;
 
-//    /**
-//     * AnimalService constructor.
-//     * @param $animal
-//     * @param $species
-//     * @param $breed
-//     * @param $gender
-//     * @param $price
-//     */
-//    public function __construct(Animal $animal, string $species, string $breed,
-//                                string $gender, int $price)
-//    {
-//        $this->animal = $animal;
-//        $this->species = $species;
-//        $this->breed = $breed;
-//        $this->gender = $gender;
-//        $this->price = $price;
-//    }
-
-
     public function run()
     {
-        $this->say('testDatabase executed');
-        $allDogs = $this->getContainer()->get(DatabaseService::class)
-            ->getAllDogs();
-//        $this->say($allDogs);
-
-//        $this->testDatabase();
-
-
-//        // $this->say('runBrowse executed');
-//        $question = Question::create('What animal would you prefer?')
-//            ->addButtons([
-//                Button::create('Dog')->value('Dog'),
-//                Button::create('Cat')->value('Cat'),
-//            ]);
-//
-//        $this->ask($question, function (Answer $answer) {
-//            if ($answer->isInteractiveMessageReply()) {
-//                $answer->getValue();
-//            }
-//
-//            if ($answer == 'Dog') {
-//                $this->species = $answer;
-//               // $this->selectDogBreed();
-//                $this->testDatabase();
-//
-//            } else {
-//                $this->species = $answer;
-//                $this->selectCatBreed();
-//
-//            }
-//        });
+        $this->returnAllAnimals();
     }
 
-//    /**
-//     *
-//     */
-//    public function usingRepository()
-//    {
-//        $message = 0;
-//        $message = $this->getContainer()->get(DatabaseService::class)->getAnimal($this->breed,$this->species,$this->gender);
-//        $this->say('message'.$message);
-//    }
+    public function returnAllAnimals() {
 
+        $buttons = [];
+
+        $allDogs = $this->getContainer()->get(DatabaseService::class)
+            ->getAllDogs();
+
+        foreach ($allDogs as $key=>$animal)
+        {
+            $buttons[] = Button::create($animal->getBreed())->value
+            ($animal->getBreed());
+        }
+
+        $question = Question::create('Here are all the animals we have to offer. Chose one:')
+            ->addButtons($buttons);
+
+        $this->ask($question, function (Answer $answer) {
+            if ($answer->isInteractiveMessageReply()) {
+                $answer->getValue();
+            }
+        });
+    }
 
     public function testDatabase()
     {
@@ -93,8 +56,6 @@ class AnimalService extends Conversation
 
         $this->say('testDatabase executed again');
     }
-
-
 
     public function selectDogBreed()
     {

@@ -26,19 +26,9 @@ class DatabaseService
         $this->em = $entityManager;
     }
 
-
-//    public function getAnimal (String $animalBreed, String $animalSpecies, String $animalGender)
-//    {
-//     $animal = $this->em->getRepository(Animal::class)->findBy(array('species' => $animalSpecies,
-//         'breed' => $animalBreed, 'gender' => $animalGender));
-//
-//     return $animal;
-//    }
-
-
     public function getAllDogs()
     {
-        $query = $this->em->createQuery('SELECT u FROM App\Entity\Animal');
+        $query = $this->em->createQuery('SELECT u FROM App\Entity\Animal u');
         return $query->getResult();
     }
 }
