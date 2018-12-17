@@ -14,7 +14,6 @@ class AnimalAdmin extends AbstractAdmin
     // configure which fields are displayed on the edit and create actions
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('id', IntegerType::class);
         $formMapper->add('species', TextType::class);
         $formMapper->add('breed', TextType::class);
         $formMapper->add('gender', TextType::class);

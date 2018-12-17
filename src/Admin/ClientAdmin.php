@@ -13,7 +13,6 @@ class ClientAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('id', IntegerType::class);
         $formMapper->add('name', TextType::class);
         $formMapper->add('surname', TextType::class);
         $formMapper->add('street', TextType::class);

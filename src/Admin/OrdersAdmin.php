@@ -13,7 +13,6 @@ class OrdersAdmin extends AbstractAdmin
     // configure which fields are displayed on the edit and create actions
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('id', IntegerType::class);
         $formMapper->add('client_id', IntegerType::class);
         $formMapper->add('animal_id', IntegerType::class);
 
