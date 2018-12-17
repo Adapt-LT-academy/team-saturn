@@ -26,7 +26,7 @@ class DatabaseService
 
     public function getBreeds(String $species)
     {
-        $query = $this->em->createQuery('SELECT f FROM App\Entity\Animal f WHERE f.species = :givenSpecies')->setParameter('givenSpecies', $species);
+        $query = $this->em->createQuery('SELECT f FROM App\Entity\Animal f WHERE f.species = :givenSpecies GROUP BY f.breed')->setParameter('givenSpecies', $species);
         return $query->getResult();
     }
 }
