@@ -36,7 +36,7 @@ class AnimalService extends Conversation
             ($animal->getSpecies());
         }
 
-        $question = Question::create('Here are all the animals we have to offer. Chose one:')
+        $question = Question::create('What animal would you prefer?')
             ->addButtons($buttons);
 
         $this->ask($question, function (Answer $answer) {
@@ -66,108 +66,17 @@ class AnimalService extends Conversation
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
                 $this->breed = $answer->getValue();
+                $this->selectGender();
             }
         });
     }
-
-    public function selectDogBreed()
-    {
-        $question = Question::create('Please select dog breed')
-            ->addButtons([
-                Button::create('Bulldog')->value('bulldog'),
-                Button::create('Beagle')->value('beagle'),
-                Button::create('Poodle')->value('poodle'),
-                Button::create('Chihuahua')->value('chihuahua'),
-                Button::create('Dobermann')->value('dobermann'),
-                Button::create('Quit')->value('startQuit'),
-            ]);
-
-        $this->ask($question, function (Answer $answer) {
-            if ($answer->isInteractiveMessageReply()) {
-                $answer->getValue();
-            }
-
-            switch ($answer) {
-                case 'bulldog':
-                    $this->breed = $answer;
-                    $this->selectGender();
-                    break;
-                case 'beagle':
-                    $this->breed = $answer;
-                    $this->selectGender();
-                    break;
-                case 'poodle':
-                    $this->breed = $answer;
-                    $this->selectGender();
-                    break;
-                case 'chihuahua':
-                    $this->breed = $answer;
-                    $this->selectGender();
-                    break;
-                case 'dobermann':
-                    $this->breed = $answer;
-                    $this->selectGender();
-                    break;
-                case 'startQuit':
-                    $this->runConfirmAnimal();
-                    break;
-            }
-        });
-    }
-
-    public function selectCatBreed()
-    {
-        $question = Question::create('Please select cat kind')
-            ->addButtons([
-                Button::create('Ragdoll')->value('ragdoll'),
-                Button::create('Sphynx')->value('sphynx'),
-                Button::create('Bengal')->value('bengal'),
-                Button::create('Siberian')->value('siberian'),
-                Button::create('Chartreux')->value('chartreux'),
-                Button::create('Quit')->value('startQuit'),
-            ]);
-
-        $this->ask($question, function (Answer $answer) {
-            if ($answer->isInteractiveMessageReply()) {
-                $answer->getValue();
-            }
-
-            switch ($answer) {
-                case 'ragdoll':
-                    $this->breed = $answer;
-                    $this->selectGender();
-                    break;
-                case 'sphynx':
-                    $this->breed = $answer;
-                    $this->selectGender();
-                    break;
-                case 'bengal':
-                    $this->breed = $answer;
-                    $this->selectGender();
-                    break;
-                case 'siberian':
-                    $this->breed = $answer;
-                    $this->selectGender();
-                    break;
-                case 'chartreux':
-                    $this->breed = $answer;
-                    $this->selectGender();
-                    break;
-                case 'startQuit':
-                    $this->runConfirmAnimal();
-                    break;
-            }
-        });
-    }
-
     public function selectGender()
     {
         $question = Question::create('Please select gender')
             ->addButtons([
-                Button::create('Male')->value('male'),
-                Button::create('Female')->value('female'),
+                Button::create('Male')->value('Male'),
+                Button::create('Female')->value('Female'),
             ]);
-
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
                 $this->gender = $answer->getValue();
@@ -176,29 +85,22 @@ class AnimalService extends Conversation
 
         });
     }
-
     public function animalDetails() {
-        $message = '<br>Animal DETAILS:<br>';
+        $message = 'Animal DETAILS:<br>';
         $message .= 'Species: '.$this->species.'<br>';
         $message .= 'Breed: '.$this->breed.'<br>';
         $message .= 'Gender: '.$this->gender.'<br>';
         $message .= 'Price: '.$this->price.'<br>';
-
-
-        $this->say('Order details obtained successfully' . $message);
+        $this->say( $message);
         $this->runConfirmAnimal();
-
     }
-
-
     public function runConfirmAnimal()
     {
-        $question = Question::create('Price for this animal is'.$this->price.'Would you like start another order?')
+        $question = Question::create('Confirm animal details')
             ->addButtons([
-                Button::create('Yes')->value('yes'),
-                Button::create('No')->value('no'),
+                Button::create('Confirm')->value('yes'),
+                Button::create('Change')->value('no'),
             ]);
-
         $this->ask(/**
          * @param Answer $answer
          */
@@ -208,13 +110,77 @@ class AnimalService extends Conversation
             }
             if($answer == 'yes')
             {
-                $this->say('u pressed yes');
+                $this->askName();
             } else
             {
                 $this->run();
             }
         });
-
     }
-
+    public function askName()
+    {
+        $this->ask('Whats is your first name?', function (Answer $response) {
+            $this->name = $response->getText();
+            $this->askSurname();
+        });
+    }
+    public function askSurname()
+    {
+        $this->ask('Great, and your last name?', function (Answer $response) {
+            $this->surname = $response->getText();
+            $this->askStreet();
+        });
+    }
+    public function askStreet()
+    {
+        $this->ask('Got it! Now we need a location. Lets start with street name.', function (Answer $response) {
+            $this->street = $response->getText();
+            $this->askApartmentNumber();
+        });
+    }
+    public function askApartmentNumber()
+    {
+        $this->ask('Now enter apartment number.', function (Answer $response) {
+            $this->apartmentNumber = $response->getText();
+            $this->askCity();
+        });
+    }
+    public function askCity()
+    {
+        $this->ask('Oh and city?', function (Answer $response) {
+            $this->city = $response->getText();
+            $this->clientDetails();
+        });
+    }
+    public function clientDetails() {
+        $message = 'DELIVERY DETAILS:<br>';
+        $message .= 'Street: '.$this->street.'<br>';
+        $message .= 'Apartment: '.$this->apartmentNumber.'<br>';
+        $message .= 'City: '.$this->city.'<br>';
+        $this->say($message);
+        $this->runConfirmClient();
+    }
+    public function runConfirmClient()
+    {
+        $question = Question::create('Confirm delivery details')
+            ->addButtons([
+                Button::create('Confirm')->value('yes'),
+                Button::create('Change')->value('no'),
+            ]);
+        $this->ask(/**
+         * @param Answer $answer
+         */
+            $question, function (Answer $answer) {
+            if($answer->isInteractiveMessageReply()) {
+                $answer->getValue();
+            }
+            if($answer == 'yes')
+            {
+                $this->say('Your order placed successfully');
+            } else
+            {
+                $this->askName();
+            }
+        });
+    }
 }
