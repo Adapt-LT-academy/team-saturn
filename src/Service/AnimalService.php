@@ -2,16 +2,16 @@
 
 namespace App\Service;
 
+use App\Entity\Animal;
+use App\Entity\Client;
 use BotMan\BotMan\Messages\Conversations\Conversation;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use App\Traits\ContainerAwareConversationTrait;
 
-/**
- * Class TestConversation
- * @property  startConversation
- */
+
+
 class AnimalService extends Conversation
 {
 
@@ -22,33 +22,70 @@ class AnimalService extends Conversation
     protected $gender;
     protected $price;
 
-    public function run()
+    /**
+     * AnimalService constructor.
+     * @param $species
+     * @param $breed
+     * @param $gender
+     * @param $price
+     */
+    public function __construct($species, $breed, $gender, $price)
     {
-        // $this->say('runBrowse executed');
-        $question = Question::create('What animal would you prefer?')
-            ->addButtons([
-                Button::create('Dog')->value('Dog'),
-                Button::create('Cat')->value('Cat'),
-            ]);
-
-        $this->ask($question, function (Answer $answer) {
-            if ($answer->isInteractiveMessageReply()) {
-                $answer->getValue();
-            }
-
-            if ($answer == 'Dog') {
-                $this->species = $answer;
-                $this->selectDogBreed();
-
-            } else {
-                $this->species = $answer;
-                $this->selectCatBreed();
-
-            }
-        });
+        $this->species = $species;
+        $this->breed = $breed;
+        $this->gender = $gender;
+        $this->price = $price;
     }
 
 
+    public function run()
+    {
+        $this->say('testDatabase executed');
+  //      $this->testDatabase();
+
+
+//        // $this->say('runBrowse executed');
+//        $question = Question::create('What animal would you prefer?')
+//            ->addButtons([
+//                Button::create('Dog')->value('Dog'),
+//                Button::create('Cat')->value('Cat'),
+//            ]);
+//
+//        $this->ask($question, function (Answer $answer) {
+//            if ($answer->isInteractiveMessageReply()) {
+//                $answer->getValue();
+//            }
+//
+//            if ($answer == 'Dog') {
+//                $this->species = $answer;
+//               // $this->selectDogBreed();
+//                $this->testDatabase();
+//
+//            } else {
+//                $this->species = $answer;
+//                $this->selectCatBreed();
+//
+//            }
+//        });
+    }
+
+    /**
+     *
+     */
+    public function usingRepository()
+    {
+        $message = 0;
+        $message = $this->getContainer()->get(DatabaseService::class)->getAnimal($this->breed,$this->species,$this->gender);
+        $this->say('message'.$message);
+    }
+
+
+    public function testDatabase()
+    {
+        $output = $this->getContainer()->get(DatabaseService::class)->getAllDogs();
+
+        $this->say('testDatabase executed again');
+    }
 
 
 
