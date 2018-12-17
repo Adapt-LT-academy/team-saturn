@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: macbookair
- * Date: 2018-12-12
- * Time: 12:36
- */
 
-// src/Admin/CategoryAdmin.php
 namespace App\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
@@ -21,6 +14,7 @@ class AnimalAdmin extends AbstractAdmin
     // configure which fields are displayed on the edit and create actions
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $formMapper->add('id', IntegerType::class);
         $formMapper->add('species', TextType::class);
         $formMapper->add('breed', TextType::class);
         $formMapper->add('gender', TextType::class);
@@ -30,6 +24,7 @@ class AnimalAdmin extends AbstractAdmin
     // method configures the filters, used to filter and sort the list of models
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
+        $datagridMapper->add('id');
         $datagridMapper->add('species');
         $datagridMapper->add('breed');
         $datagridMapper->add('gender');
@@ -39,6 +34,7 @@ class AnimalAdmin extends AbstractAdmin
     // Here you specify which fields are shown when all models are listed
     protected function configureListFields(ListMapper $listMapper)
     {
+        $listMapper->addIdentifier('id');
         $listMapper->addIdentifier('species');
         $listMapper->addIdentifier('breed');
         $listMapper->addIdentifier('gender');

@@ -33,13 +33,27 @@ services:
     class: App\Admin\SizeAdmin
 
 
-  # config/services.yaml
+  # register different admin services
 
   admin.animal:
     class: App\Admin\AnimalAdmin
     arguments: [~, App\Entity\Animal, ~]
     tags:
       - { name: sonata.admin, manager_type: orm, label: Animal }
+    public: true
+
+  admin.client:
+    class: App\Admin\ClientAdmin
+    arguments: [~, App\Entity\Client, ~]
+    tags:
+    - { name: sonata.admin, manager_type: orm, label: Client }
+    public: true
+
+  admin.order:
+    class: App\Admin\OrdersAdmin
+    arguments: [~, App\Entity\Order, ~]
+    tags:
+    - { name: sonata.admin, manager_type: orm, label: Orders }
     public: true
 
 

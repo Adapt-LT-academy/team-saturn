@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: macbookair
- * Date: 2018-12-12
- * Time: 12:36
- */
 
-// src/Admin/CategoryAdmin.php
 namespace App\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
@@ -20,6 +13,7 @@ class ClientAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $formMapper->add('id', IntegerType::class);
         $formMapper->add('name', TextType::class);
         $formMapper->add('surname', TextType::class);
         $formMapper->add('street', TextType::class);
@@ -29,6 +23,7 @@ class ClientAdmin extends AbstractAdmin
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
+        $datagridMapper->add('id');
         $datagridMapper->add('name');
         $datagridMapper->add('surname');
         $datagridMapper->add('street');
@@ -38,6 +33,7 @@ class ClientAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
+        $listMapper->addIdentifier('id');
         $listMapper->addIdentifier('name');
         $listMapper->addIdentifier('surname');
         $listMapper->addIdentifier('street');
