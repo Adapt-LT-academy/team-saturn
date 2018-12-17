@@ -8,8 +8,6 @@ use BotMan\BotMan\Messages\Outgoing\Question;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use App\Traits\ContainerAwareConversationTrait;
 
-
-
 class AnimalService extends Conversation
 {
 
@@ -25,122 +23,54 @@ class AnimalService extends Conversation
     protected $apartmentNumber;
     protected $city;
 
-
-
     public function run()
     {
+        $this->selectSpecies();
+    }
+
+    public function selectSpecies()
+    {
+
+        $buttons = [];
+
+        $animals = $this->getContainer()->get(DatabaseService::class)
+            ->getAllAnimals();
+
+        foreach ($animals as $key => $animal) {
+            $buttons[] = Button::create($animal->getSpecies())->value
+            ($animal->getSpecies());
+        }
+
         $question = Question::create('What animal would you prefer?')
-            ->addButtons([
-                Button::create('Dog')->value('Dog'),
-                Button::create('Cat')->value('Cat'),
-            ]);
+            ->addButtons($buttons);
 
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
-                $answer->getValue();
-            }
-
-            if ($answer == 'Dog') {
-                $this->species = $answer;
-               // $this->selectDogBreed();
-                $this->selectDogBreed();
-
-            } else {
-                $this->species = $answer;
-                $this->selectCatBreed();
-
+                $this->species = $answer->getValue();
+                $this->selectBreed();
             }
         });
     }
 
-    public function selectDogBreed()
+    public function selectBreed()
     {
-        $question = Question::create('Please select dog breed')
-            ->addButtons([
-                Button::create('Bulldog')->value('Bulldog'),
-                Button::create('Beagle')->value('Beagle'),
-                Button::create('Poodle')->value('Poodle'),
-                Button::create('Chihuahua')->value('Chihuahua'),
-                Button::create('Dobermann')->value('Dobermann'),
-            ]);
+        $buttons = [];
+
+        $breeds = $this->getContainer()->get(DatabaseService::class)
+            ->getBreeds($this->species);
+
+        foreach ($breeds as $key => $animal) {
+            $buttons[] = Button::create($animal->getBreed())->value
+            ($animal->getBreed());
+        }
+
+        $question = Question::create('Choose a breed for your animal:')
+            ->addButtons($buttons);
 
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
-                $answer->getValue();
-            }
-
-            switch ($answer) {
-                case 'Bulldog':
-                    $this->breed = $answer;
-                    $this->price = 1350;
-                    $this->selectGender();
-                    break;
-                case 'Beagle':
-                    $this->breed = $answer;
-                    $this->price = 1550;
-                    $this->selectGender();
-                    break;
-                case 'Poodle':
-                    $this->breed = $answer;
-                    $this->price = 1650;
-                    $this->selectGender();
-                    break;
-                case 'Chihuahua':
-                    $this->breed = $answer;
-                    $this->price = 2150;
-                    $this->selectGender();
-                    break;
-                case 'Dobermann':
-                    $this->breed = $answer;
-                    $this->price = 1950;
-                    $this->selectGender();
-                    break;
-            }
-        });
-    }
-
-    public function selectCatBreed()
-    {
-        $question = Question::create('Please select cat kind')
-            ->addButtons([
-                Button::create('Ragdoll')->value('Ragdoll'),
-                Button::create('Sphynx')->value('Sphynx'),
-                Button::create('Bengal')->value('Bengal'),
-                Button::create('Siberian')->value('Siberian'),
-                Button::create('Chartreux')->value('Chartreux'),
-            ]);
-
-        $this->ask($question, function (Answer $answer) {
-            if ($answer->isInteractiveMessageReply()) {
-                $answer->getValue();
-            }
-
-            switch ($answer) {
-                case 'Ragdoll':
-                    $this->breed = $answer;
-                    $this->price = 950;
-                    $this->selectGender();
-                    break;
-                case 'Sphynx':
-                    $this->breed = $answer;
-                    $this->price = 1250;
-                    $this->selectGender();
-                    break;
-                case 'Bengal':
-                    $this->breed = $answer;
-                    $this->price = 550;
-                    $this->selectGender();
-                    break;
-                case 'Siberian':
-                    $this->breed = $answer;
-                    $this->price = 650;
-                    $this->selectGender();
-                    break;
-                case 'Chartreux':
-                    $this->breed = $answer;
-                    $this->price = 1350;
-                    $this->selectGender();
-                    break;
+                $this->breed = $answer->getValue();
+                $this->selectGender();
             }
         });
     }
@@ -152,37 +82,24 @@ class AnimalService extends Conversation
                 Button::create('Male')->value('Male'),
                 Button::create('Female')->value('Female'),
             ]);
-
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
                 $this->gender = $answer->getValue();
-
-            }
-
-            if ($this->gender == 'Female') {
-                $this->price += 50;
                 $this->animalDetails();
-            } else
-                $this->animalDetails();
-            {
-
             }
-
         });
     }
 
-    public function animalDetails() {
+    public function animalDetails()
+    {
         $message = 'Animal DETAILS:<br>';
-        $message .= 'Species: '.$this->species.'<br>';
-        $message .= 'Breed: '.$this->breed.'<br>';
-        $message .= 'Gender: '.$this->gender.'<br>';
-        $message .= 'Price: '.$this->price.'<br>';
-
-        $this->say( $message);
+        $message .= 'Species: ' . $this->species . '<br>';
+        $message .= 'Breed: ' . $this->breed . '<br>';
+        $message .= 'Gender: ' . $this->gender . '<br>';
+        $message .= 'Price: ' . $this->price . '<br>';
+        $this->say($message);
         $this->runConfirmAnimal();
-
     }
-
 
     public function runConfirmAnimal()
     {
@@ -191,19 +108,16 @@ class AnimalService extends Conversation
                 Button::create('Confirm')->value('yes'),
                 Button::create('Change')->value('no'),
             ]);
-
         $this->ask(/**
          * @param Answer $answer
          */
             $question, function (Answer $answer) {
-            if($answer->isInteractiveMessageReply()) {
+            if ($answer->isInteractiveMessageReply()) {
                 $answer->getValue();
             }
-            if($answer == 'yes')
-            {
+            if ($answer == 'yes') {
                 $this->askName();
-            } else
-            {
+            } else {
                 $this->run();
             }
         });
@@ -249,16 +163,18 @@ class AnimalService extends Conversation
         });
     }
 
-    public function clientDetails() {
+    public function clientDetails()
+    {
         $message = 'DELIVERY DETAILS:<br>';
-        $message .= 'Street: '.$this->street.'<br>';
-        $message .= 'Apartment: '.$this->apartmentNumber.'<br>';
-        $message .= 'City: '.$this->city.'<br>';
+        $message .= 'Street: ' . $this->street . '<br>';
+        $message .= 'Apartment: ' . $this->apartmentNumber . '<br>';
+        $message .= 'City: ' . $this->city . '<br>';
 
         $this->say($message);
         $this->runConfirmClient();
 
     }
+
     public function runConfirmClient()
     {
         $question = Question::create('Confirm delivery details')
@@ -271,17 +187,14 @@ class AnimalService extends Conversation
          * @param Answer $answer
          */
             $question, function (Answer $answer) {
-            if($answer->isInteractiveMessageReply()) {
+            if ($answer->isInteractiveMessageReply()) {
                 $answer->getValue();
             }
-            if($answer == 'yes')
-            {
+            if ($answer == 'yes') {
                 $this->say('Your order placed successfully');
-            } else
-            {
+            } else {
                 $this->askName();
             }
         });
     }
-
 }

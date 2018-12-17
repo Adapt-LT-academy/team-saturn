@@ -27,6 +27,16 @@ services:
     resource: '../src/Controller'
     tags: ['controller.service_arguments']
 
+  # to Fetch services via $container->get() we need to make them public
+  App\Service\OptionsService:
+    class: App\Service\OptionsService
+    public: true
+
+  # to Fetch services via $container->get() we need to make them public
+  App\Service\DatabaseService:
+    class: App\Service\DatabaseService
+    public: true
+
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones
   admin.size:
@@ -57,7 +67,4 @@ services:
     public: true
 
 
-  # to Fetch services via $container->get() we need to make them public
-  App\Service\OptionsService:
-    class: App\Service\OptionsService
-    public: true
+
