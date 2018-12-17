@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Animal;
 
 class DatabaseService
 {
@@ -17,9 +18,9 @@ class DatabaseService
         $this->em = $entityManager;
     }
 
-    public function getAllDogs()
+    public function getAllAnimals()
     {
-        $query = $this->em->createQuery('SELECT DISTINCT(species) u FROM App\Entity\Animal u');
+        $query = $this->em->createQuery('SELECT f FROM App\Entity\Animal f GROUP BY f.species');
         return $query->getResult();
     }
 }

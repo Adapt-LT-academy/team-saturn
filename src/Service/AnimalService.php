@@ -28,12 +28,12 @@ class AnimalService extends Conversation
         $buttons = [];
 
         $allDogs = $this->getContainer()->get(DatabaseService::class)
-            ->getAllDogs();
+            ->getAllAnimals();
 
         foreach ($allDogs as $key=>$animal)
         {
-            $buttons[] = Button::create($animal->getBreed())->value
-            ($animal->getBreed());
+            $buttons[] = Button::create($animal->getSpecies())->value
+            ($animal->getSpecies());
         }
 
         $question = Question::create('Here are all the animals we have to offer. Chose one:')
@@ -42,7 +42,7 @@ class AnimalService extends Conversation
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
                 $this->breed = $answer->getValue();
-                $this->selectGender();
+//                $this->selectGender();
             }
         });
     }
