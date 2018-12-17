@@ -21,28 +21,27 @@ class AnimalFixtures extends Fixture
     {
         $animals = [
             [
-                'species' => 'Cat',
-                'breed' => 'Bulldog',
-                'gender' => 'Male',
+                'species' => 'dog',
+                'breed' => 'bulldog',
+                'gender' => 'male',
                 'price' => 500,
             ],
             [
-                'species' => 'Dog',
-                'breed' => 'Siberian',
-                'gender' => 'Male',
+                'species' => 'cat',
+                'breed' => 'siberian',
+                'gender' => 'male',
                 'price' => 500,
             ],
 
         ];
 
         foreach ($animals as $item) {
-            $animals = new Animal();
+            $animals = new Pet();
             $animals->setSpecies($item['species']);
             $animals->setBreed($item['breed']);
             $animals->setGender($item['gender']);
             $animals->setPrice($item['price']);
             $manager->persist($animals);
-            $manager->persist($animal);
         }
         $manager->flush();
     }

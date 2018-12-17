@@ -26,6 +26,7 @@ class ClientAdmin extends AbstractAdmin
         $formMapper->add('apartment', IntegerType::class);
         $formMapper->add('city', TextType::class);
     }
+
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper->add('name');
@@ -34,6 +35,7 @@ class ClientAdmin extends AbstractAdmin
         $datagridMapper->add('apartment');
         $datagridMapper->add('city');
     }
+
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper->addIdentifier('name');

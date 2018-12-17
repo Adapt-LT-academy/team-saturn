@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\AnimalService;
 use App\Service\PetOrder;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
@@ -50,7 +51,7 @@ class IndexController extends Controller
             '(hello|hi|hey)',
             function (BotMan $bot) {
                 $bot->reply('Welcome to PetInABox. I am here to ensure all service process will go smoothly.');
-                $bot->startConversation(new PetOrder);
+                $bot->startConversation(new AnimalService());
             }
         );
 
