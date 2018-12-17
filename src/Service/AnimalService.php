@@ -20,17 +20,17 @@ class AnimalService extends Conversation
 
     public function run()
     {
-        $this->returnAllAnimals();
+        $this->selectSpecies();
     }
 
-    public function returnAllAnimals() {
+    public function selectSpecies() {
 
         $buttons = [];
 
-        $allDogs = $this->getContainer()->get(DatabaseService::class)
+        $animals = $this->getContainer()->get(DatabaseService::class)
             ->getAllAnimals();
 
-        foreach ($allDogs as $key=>$animal)
+        foreach ($animals as $key=>$animal)
         {
             $buttons[] = Button::create($animal->getSpecies())->value
             ($animal->getSpecies());
@@ -51,10 +51,10 @@ class AnimalService extends Conversation
     {
         $buttons = [];
 
-        $allDogs = $this->getContainer()->get(DatabaseService::class)
+        $breeds = $this->getContainer()->get(DatabaseService::class)
             ->getBreeds($this->species);
 
-        foreach ($allDogs as $key=>$animal)
+        foreach ($breeds as $key=>$animal)
         {
             $buttons[] = Button::create($animal->getBreed())->value
             ($animal->getBreed());
