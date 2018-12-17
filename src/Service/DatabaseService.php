@@ -23,4 +23,10 @@ class DatabaseService
         $query = $this->em->createQuery('SELECT f FROM App\Entity\Animal f GROUP BY f.species');
         return $query->getResult();
     }
+
+    public function getBreeds(String $species)
+    {
+        $query = $this->em->createQuery('SELECT f FROM App\Entity\Animal f WHERE f.species = :givenSpecies')->setParameter('givenSpecies', $species);
+        return $query->getResult();
+    }
 }

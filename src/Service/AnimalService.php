@@ -41,8 +41,31 @@ class AnimalService extends Conversation
 
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
+                $this->species = $answer->getValue();
+                $this->selectBreed();
+            }
+        });
+    }
+
+    public function selectBreed()
+    {
+        $buttons = [];
+
+        $allDogs = $this->getContainer()->get(DatabaseService::class)
+            ->getBreeds($this->species);
+
+        foreach ($allDogs as $key=>$animal)
+        {
+            $buttons[] = Button::create($animal->getBreed())->value
+            ($animal->getBreed());
+        }
+
+        $question = Question::create('Choose a breed for your animal:')
+            ->addButtons($buttons);
+
+        $this->ask($question, function (Answer $answer) {
+            if ($answer->isInteractiveMessageReply()) {
                 $this->breed = $answer->getValue();
-//                $this->selectGender();
             }
         });
     }
