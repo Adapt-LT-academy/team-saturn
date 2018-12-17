@@ -45,16 +45,10 @@ class AnimalService extends Conversation
 
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
-                $answer->getValue();
+                $this->breed = $answer->getValue();
+                $this->selectGender();
             }
         });
-    }
-
-    public function testDatabase()
-    {
-        $output = $this->getContainer()->get(DatabaseService::class)->getAllDogs();
-
-        $this->say('testDatabase executed again');
     }
 
     public function selectDogBreed()
