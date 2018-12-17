@@ -19,7 +19,7 @@ class DatabaseService
 
     public function getAllDogs()
     {
-        $query = $this->em->createQuery('SELECT DISTINCT u FROM App\Entity\Animal u');
+        $query = $this->em->createQuery('SELECT DISTINCT(species) u FROM App\Entity\Animal u');
         return $query->getResult();
     }
 }
